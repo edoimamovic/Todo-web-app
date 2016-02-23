@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Vollkorn">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Arvo">
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.js"></script>
+    <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+    <link href="bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
+
+    <script src="kontroleri.js"></script>
+    <link rel = "stylesheet" href="izgled.css" type="text/css"/>
+</head>
+<body ng-app="app">
+    <div ng-controller = "LoginKontrola">
+    <form>
+        <input type="text" id="uname_input" ng-model="uname" placeholder="username" />
+        <input type="password" id="pass_input" ng-model="pass" placeholder="password" />
+        <button ng-click="uloguj()">Uloguj se</button>
+        <p ng-model="tekst_ulogovanosti">{{tekst_ulogovanosti}}</p>
+    </form>
+    <form>
+        <input type="text" id="reg_uname_input" ng-model="novi.reg_uname" placeholder="username" />
+        <input type="password" id="reg_pass_input" ng-model="novi.reg_pass" placeholder="password" />
+        <button ng-click="registruj()">Registruj se</button>
+    </form>
+
+    </div>
+
+    <h1>Demo aplikacija</h1>
+    <div id="sve" ng-controller="NoviKontroler">
+        <p>{{za_test}}</p>
+        <h2 id="naslov_liste">Svi zadaci</h2>
+        <ul>
+             <li ng-repeat="zadatak in svi_zadaci"><img class="brisanje_sl" src="iks.png" ng-click="izbrisi(zadatak._id)"><a href="#" editable-text="zadatak.tekst" onaftersave="snimi(zadatak)">{{zadatak.tekst || "test"}}</a></li>
+        </ul>
+
+        <form>
+            <input type="text" placeholder="novi zadatak" ng-model="z.tekst" maxlength="20"/> <button ng-click="ubaci()">Dodaj</button>
+        </form>
+
+    </div>
+</body>
+</html>
+

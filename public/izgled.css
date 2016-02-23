@@ -1,0 +1,38 @@
+body
+{
+    background: url("http://api.thumbr.it/whitenoise-361x370.png?background=f0ebf0ff&noise=5c5c5c&density=20&opacity=13");
+}
+
+
+ul
+{
+    list-style-type: none;
+}
+
+li
+{
+    padding-bottom: 5px;
+    padding-top: 5px;
+    font-family: 'Arvo';
+    font-size: 18px;
+}
+
+
+
+.brisanje_sl
+{
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+#naslov_liste
+{
+    font-family: 'Fjord One';
+    font-size: 48px;
+}
+
+#sve
+{
+    position: absolute;
+    left: 37%;
+}

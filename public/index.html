@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.js"></script>
+    <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+    <link href="bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <title>Todo - demo web aplikacija</title>
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Vollkorn">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Arvo">
+    <link href='https://fonts.googleapis.com/css?family=Fjord+One' rel='stylesheet' type='text/css'>
+
+    <script src="kontroleri.js"></script>
+    <link rel = "stylesheet" href="izgled.css" type="text/css"/>
+</head>
+<body ng-app="app">
+    <h1 style="font-family: 'Vollkorn';">Demo aplikacija</h1>
+
+    <div ng-controller = "LoginKontrola">
+        <form>
+            <input type="text" id="uname_input" class="login_logout_inputi" ng-model="pokusaj.uname"  ng-show="login_aktivacija && !neko_ulogovan()" placeholder="username" />
+            <input type="password" id="pass_input" class="login_logout_inputi" ng-model="pokusaj.pass" ng-show="login_aktivacija && !neko_ulogovan()" placeholder="password" ng-show="login_aktivacija" />
+            <button ng-click="uloguj()" ng-show="login_aktivacija && !neko_ulogovan()">Uloguj se</button>
+
+            <input type="text" class="login_logout_inputi" id="reg_uname_input" ng-model="novi.reg_uname" placeholder="username" ng-show="!login_aktivacija && !neko_ulogovan()"/>
+            <input type="password" class="login_logout_inputi" id="reg_pass_input" ng-model="novi.reg_pass" placeholder="password" ng-show="!login_aktivacija && !neko_ulogovan()"/>
+            <button ng-click="registruj()" ng-show="!login_aktivacija && !neko_ulogovan()">Registruj se</button>
+            <a ng-click="promijeni_aktivaciju()" style="font-family: 'Fjord One'" href="#">{{tekst_aktivacije}}</a>
+            <p ng-model="tekst_ulogovanosti" style="font-family: 'Fjord One'">{{tekst_ulogovanosti}}</p> <a href="#" ng-click="logout()" ng-show="neko_ulogovan()">Izloguj se.</a>
+            <p></p>
+            <img ng-src="img_src()" ng-show="neko_ulogovan()" alt="Niste postavili sliku profila.">
+            <input type="file" id="file" name="file" ng-show="neko_ulogovan()"/>
+            <a href="#" ng-show="neko_ulogovan()" ng-click="upload_profilne()">Postavi profilnu sliku.</a>
+        </form>
+
+    </div>
+
+    <div id="sve" ng-controller="NoviKontroler">
+        <h2 id="naslov_liste">Svi zadaci</h2>
+        <ul>
+             <li ng-repeat="zadatak in svi_zadaci"><img class="brisanje_sl" src="iks.png" ng-click="izbrisi(zadatak._id)"><a href="#" editable-text="zadatak.tekst" onaftersave="snimi(zadatak._id, zadatak.tekst)">{{zadatak.tekst || "test"}}</a></li>
+        </ul>
+
+        <form>
+            <span ng-show="ulogovani_id != 0"><input type="text" placeholder="novi zadatak" ng-model="novi_zadatak.tekst" maxlength="20"/> <button ng-click="ubaci()">Dodaj</button></span>
+            <p ng-show="ulogovani_id == 0" style="font-family: 'Arvo';">Morate se ulogovati da biste dodavali i pregledali svoje zadatke.</p>
+        </form>
+
+    </div>
+</body>
+</html>
+
